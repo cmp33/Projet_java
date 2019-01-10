@@ -19,8 +19,8 @@ public class Musique extends JPanel {
         this.add(top, BorderLayout.NORTH);
         this.add(main, BorderLayout.CENTER);
 
-        top.setBackground(Color.RED);
-        main.setBackground(Color.pink);
+        top.setBackground(new Color (0x8EBE7C));
+        main.setBackground(new Color (0x8EBE7C));
 
         GridLayout ButTopLayout = new GridLayout(1, 3);
         ButTopLayout.setHgap(5);
@@ -34,7 +34,7 @@ public class Musique extends JPanel {
         AjoutMusique.addActionListener(e -> new FromAjoutMusique());
         ModifMusique.addActionListener(e -> new FromModifMusique());
 
-        JLabel NomCategorie = new JLabel("Musique");
+        JLabel NomCategorie = new JLabel("Vous êtes dans la catégorie: Musique");
 
         ButTop.add(AjoutMusique);
         ButTop.add(ModifMusique);

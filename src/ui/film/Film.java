@@ -19,8 +19,8 @@ public class Film extends JPanel {
         this.add(top, BorderLayout.NORTH);
         this.add(main, BorderLayout.CENTER);
 
-        top.setBackground(Color.RED);
-        main.setBackground(Color.pink);
+        top.setBackground(new Color (0xE3A0D7));
+        main.setBackground(new Color (0xE3A0D7));
 
         GridLayout ButTopLayout = new GridLayout(1, 3);
         ButTopLayout.setHgap(5);
@@ -34,7 +34,7 @@ public class Film extends JPanel {
         AjoutFilm.addActionListener(e -> new FormAjoutFilm());
         ModifFilm.addActionListener(e -> new FormModifFilm());
 
-        JLabel NomCategorie = new JLabel("Musique");
+        JLabel NomCategorie = new JLabel("Vous êtes dans la catégorie: Film");
 
         ButTop.add(AjoutFilm);
         ButTop.add(ModifFilm);

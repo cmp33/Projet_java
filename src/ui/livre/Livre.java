@@ -19,8 +19,8 @@ public class Livre extends JPanel {
         this.add(top, BorderLayout.NORTH);
         this.add(main, BorderLayout.CENTER);
 
-        top.setBackground(Color.RED);
-        main.setBackground(Color.pink);
+        top.setBackground(new Color (0xF76E6C));
+        main.setBackground(new Color (0xF76E6C));
 
         GridLayout ButTopLayout = new GridLayout(1, 3);
         ButTopLayout.setHgap(5);
@@ -34,7 +34,7 @@ public class Livre extends JPanel {
         AjoutLivre.addActionListener(e -> new FormAjoutLivre());
         ModifLivre.addActionListener(e -> new FormModifLivre());
 
-        JLabel NomCategorie = new JLabel("Livre");
+        JLabel NomCategorie = new JLabel("Vous êtes dans la catégorie: Livre");
 
         ButTop.add(AjoutLivre);
         ButTop.add(ModifLivre);

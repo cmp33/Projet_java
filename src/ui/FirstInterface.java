@@ -1,9 +1,9 @@
 package ui;
 
+import ui.film.Film;
 import ui.jeu.Jeu;
 import ui.livre.Livre;
 import ui.musique.Musique;
-import ui.film.Film;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +27,7 @@ public class FirstInterface extends JFrame {
 //Container de gauche (containerLeftMenu) dans lequel il y a les boutons pour séléctionner la catégorie voulu
         JPanel containerLeftMenu = new JPanel();
         containerLeftMenu.setLayout(new GridBagLayout());
-        containerLeftMenu.setBackground(new Color(0xb5c5dd));
+        containerLeftMenu.setBackground(new Color(0xFFCC5A));
 //
 //Création du choix & positionnement
         JPanel choix = new JPanel();

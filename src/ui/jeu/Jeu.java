@@ -18,8 +18,8 @@ public class Jeu extends JPanel {
         this.add(top, BorderLayout.NORTH);
         this.add(main, BorderLayout.CENTER);
 
-        top.setBackground(Color.RED);
-        main.setBackground(Color.pink);
+        top.setBackground(new Color (0x9FE4FF));
+        main.setBackground(new Color (0x9FE4FF));
 
         GridLayout ButTopLayout = new GridLayout(1, 3);
         ButTopLayout.setHgap(5);
@@ -33,7 +33,7 @@ public class Jeu extends JPanel {
         AjoutJeu.addActionListener(e -> new FormAjoutJeu());
         ModifJeu.addActionListener(e -> new FormModifJeu());
 
-        JLabel NomCategorie = new JLabel("Jeu");
+        JLabel NomCategorie = new JLabel("Vous êtes dans la catégorie: Jeu");
 
         ButTop.add(AjoutJeu);
         ButTop.add(ModifJeu);
