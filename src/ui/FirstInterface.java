@@ -1,5 +1,10 @@
 package ui;
 
+import ui.jeu.Jeu;
+import ui.livre.Livre;
+import ui.musique.Musique;
+import ui.film.Film;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
@@ -12,7 +17,8 @@ public class FirstInterface extends JFrame {
         this.setTitle("Ma bibliothèque");
         this.setSize(1000, 1000);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
 //
 //Container qui fait toute la dimension (containerPrinc) du JFrame(pour pouvoir les moduler)
         JPanel containerPrinc = new JPanel();
@@ -51,20 +57,13 @@ public class FirstInterface extends JFrame {
 //
 //On créer 4 JPanel (1 pour chaque catégorie)
 
-        JPanel musique = new JPanel();
-        musique.setBackground(Color.RED);
-            //JButton butAjoutMusique = new JButton("Ajouter");
-            //JButton butModMusique = new JButton("Modofier");
-            //JButton butSuppMusique = new JButton("Supprimer");
+        JPanel musique = new Musique();
 
-        JPanel livre = new JPanel();
-        livre.setBackground(Color.GREEN);
+        JPanel livre = new Livre();
 
-        JPanel film = new JPanel();
-        film.setBackground(Color.PINK);
+        JPanel film = new Film();
 
-        JPanel jeu = new JPanel();
-        jeu.setBackground(Color.BLUE);
+        JPanel jeu = new Jeu();
 
 //
         containerPrinc.add(containerRight, BorderLayout.CENTER);
@@ -77,7 +76,7 @@ public class FirstInterface extends JFrame {
 
 //
 //Enbrication des JPanel
-        this.add(containerPrinc);
+        this.setContentPane(containerPrinc);
         containerPrinc.add(containerLeftMenu, BorderLayout.LINE_START);
         containerLeftMenu.add(choix);
 
