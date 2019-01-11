@@ -43,6 +43,8 @@ public class Film extends JPanel {
 
         top.add(ButTop, BorderLayout.LINE_END);
 
+        TabFilm tabFilm = new TabFilm();
+        main.add(tabFilm, BorderLayout.CENTER);
 
     }
 }

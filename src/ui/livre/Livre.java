@@ -43,6 +43,9 @@ public class Livre extends JPanel {
 
         top.add(ButTop, BorderLayout.LINE_END);
 
+        TabLivre tabLivre = new TabLivre();
+        main.add(tabLivre, BorderLayout.CENTER);
+
 
     }
 }

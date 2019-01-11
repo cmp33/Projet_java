@@ -43,6 +43,8 @@ public class Musique extends JPanel {
 
         top.add(ButTop, BorderLayout.LINE_END);
 
+        TabMusique tabMusique = new TabMusique();
+        main.add(tabMusique, BorderLayout.CENTER);
 
 
 

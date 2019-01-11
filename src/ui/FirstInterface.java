@@ -15,7 +15,7 @@ public class FirstInterface extends JFrame {
     public FirstInterface(){
 
         this.setTitle("Ma bibliothèque");
-        this.setSize(1000, 1000);
+        this.setSize(1200, 700);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
@@ -75,7 +75,7 @@ public class FirstInterface extends JFrame {
         containerRight.add(jeu, listContent[3]);
 
 //
-//Enbrication des JPanel
+//Enbrication des JPanel left
         this.setContentPane(containerPrinc);
         containerPrinc.add(containerLeftMenu, BorderLayout.LINE_START);
         containerLeftMenu.add(choix);

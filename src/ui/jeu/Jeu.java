@@ -41,5 +41,8 @@ public class Jeu extends JPanel {
         top.add(NomCategorie);
 
         top.add(ButTop, BorderLayout.LINE_END);
+
+        TabJeu tabJeu = new TabJeu();
+        main.add(tabJeu, BorderLayout.CENTER);
     }
 }
