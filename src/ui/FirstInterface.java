@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.WindowEvent;
 
 public class FirstInterface extends JFrame {
-    private String[] listContent = {"musique", "livre", "film", "jeu"};
+    private String[] listContent = {"acceuil","musique", "livre", "film", "jeu"};
 
     public FirstInterface(){
 
@@ -39,23 +39,29 @@ public class FirstInterface extends JFrame {
 //
 //Button pour séléctionner la catégorie à afficher dans 'menu'
         JButton butMusique = new JButton("Musiques");
-        butMusique.addActionListener(e -> pileCategorie.show(containerRight, listContent[0]));
+        butMusique.addActionListener(e -> pileCategorie.show(containerRight, listContent[1]));
         choix.add(butMusique);
 
         JButton butLivre = new JButton("Livres");
-        butLivre.addActionListener(e -> pileCategorie.show(containerRight, listContent[1]));
+        butLivre.addActionListener(e -> pileCategorie.show(containerRight, listContent[2]));
         choix.add(butLivre);
 
         JButton butFilm = new JButton("Films");
-        butFilm.addActionListener(e -> pileCategorie.show(containerRight, listContent[2]));
+        butFilm.addActionListener(e -> pileCategorie.show(containerRight, listContent[3]));
         choix.add(butFilm);
 
         JButton butJeu = new JButton("Jeux");
-        butJeu.addActionListener(e -> pileCategorie.show(containerRight, listContent[3]));
+        butJeu.addActionListener(e -> pileCategorie.show(containerRight, listContent[4]));
         choix.add(butJeu);
 
 //
-//On créer 4 JPanel (1 pour chaque catégorie)
+//On créer 5 JPanel dans le CardLayout (1 pour chaque catégorie + acceuil)
+
+        JPanel acceuil = new JPanel();
+        JLabel intro = new JLabel("Bienvenue dans votre Bibliotèque Virtuel!");
+        Font f = new Font("Serif", Font.PLAIN, 36);
+        intro.setFont(f);
+        acceuil.add(intro, BorderLayout.CENTER);
 
         JPanel musique = new Musique();
 
@@ -69,10 +75,12 @@ public class FirstInterface extends JFrame {
         containerPrinc.add(containerRight, BorderLayout.CENTER);
         containerRight.setLayout(pileCategorie);
 
-        containerRight.add(musique, listContent[0]);
-        containerRight.add(livre, listContent[1]);
-        containerRight.add(film, listContent[2]);
-        containerRight.add(jeu, listContent[3]);
+        containerRight.add(acceuil, listContent[0]);
+
+        containerRight.add(musique, listContent[1]);
+        containerRight.add(livre, listContent[2]);
+        containerRight.add(film, listContent[3]);
+        containerRight.add(jeu, listContent[4]);
 
 //
 //Enbrication des JPanel left
