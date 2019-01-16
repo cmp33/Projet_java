@@ -23,21 +23,21 @@ public class FirstInterface extends JFrame {
 //Container qui fait toute la dimension (containerPrinc) du JFrame(pour pouvoir les moduler)
         JPanel containerPrinc = new JPanel();
         containerPrinc.setLayout(new BorderLayout());
-//
+
 //Container de gauche (containerLeftMenu) dans lequel il y a les boutons pour séléctionner la catégorie voulu
         JPanel containerLeftMenu = new JPanel();
         containerLeftMenu.setLayout(new GridBagLayout());
         containerLeftMenu.setBackground(new Color(0xFFCC5A));
 //
-//Création du choix & positionnement
+        //Création du choix & positionnement
         JPanel choix = new JPanel();
         choix.setLayout(new GridLayout(4, 1));
-//
-//
+        choix.setBackground(new Color(0xFFCC5A));
+
         JPanel containerRight = new JPanel();
         CardLayout pileCategorie = new CardLayout();
-//
-//Button pour séléctionner la catégorie à afficher dans 'menu'
+
+        //Button pour séléctionner la catégorie à afficher dans 'menu'
         JButton butMusique = new JButton("Musiques");
         butMusique.addActionListener(e -> pileCategorie.show(containerRight, listContent[0]));
         choix.add(butMusique);
@@ -54,7 +54,7 @@ public class FirstInterface extends JFrame {
         butJeu.addActionListener(e -> pileCategorie.show(containerRight, listContent[3]));
         choix.add(butJeu);
 
-//
+
 //On créer 4 JPanel (1 pour chaque catégorie)
 
         JPanel musique = new Musique();
@@ -65,7 +65,6 @@ public class FirstInterface extends JFrame {
 
         JPanel jeu = new Jeu();
 
-//
         containerPrinc.add(containerRight, BorderLayout.CENTER);
         containerRight.setLayout(pileCategorie);
 

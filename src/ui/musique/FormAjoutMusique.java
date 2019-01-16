@@ -1,4 +1,4 @@
-package ui.film;
+package ui.musique;
 
 import BDD.Connexion;
 
@@ -7,9 +7,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class FormAjoutFilm extends JDialog {
+public class FormAjoutMusique extends JDialog {
 
     private JPanel panelMain = new JPanel();
     private JPanel panelForm = new JPanel(new GridBagLayout());
@@ -20,41 +22,53 @@ public class FormAjoutFilm extends JDialog {
 
     //On defini les champs du formulaire
     private JTextField titre = new JTextField(10);
-    private JTextField realisateur = new JTextField(10);
+    private JTextField artiste = new JTextField(10);
 
-    String[] itemsGenre = {"Comedie", "Action", "Fiction"};
+    String[] itemsGenre = {"Rock", "Classique", "POP"};
     private JComboBox genre = new JComboBox(itemsGenre);
 
-    String[] itemsSupport = {"DVD", "Casette"};
+    String[] itemsSupport = {"CD", "Vinyle"};
     private JComboBox support = new JComboBox(itemsSupport);
 
     private JTextField dateAchat = new JTextField("yyyy-mm-dd", 10);
     private JTextField platformAchat = new JTextField(10);
 
-    String[] itemsStatus = {"En cours", "Terminé"};
-    private JComboBox status = new JComboBox(itemsStatus);
-
-    String[] itemsVersion = {"Oui", "Non"};
-    private JComboBox version = new JComboBox(itemsVersion);
-
     private JTextField note = new JTextField(10);
     private JTextField commentaire = new JTextField(10);
 
 
-    public FormAjoutFilm() {
+    public FormAjoutMusique() {
 
+        System.out.println(getLastId());
         createView();
 
-        this.setTitle("Ajouter un film");
-        this.setSize(300, 350);
+        this.setTitle("Ajouter une musique");
+        this.setSize(300, 300);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
-    private void createView() {
+    public int getLastId() {
 
-        String[] labels = new String[] { "Titre: ", "Réalisateur: ", "Genre: ", "Support: ", "Date d'achat: ", "Boutique: ",
-                "Status: ", "Version VF:", "Note: ", "Commentaire: " };
+        int id = 0;
+
+        try {
+
+            Statement state = Connexion.getInstance().createStatement();
+            //On exécute la requête
+            ResultSet res = state.executeQuery("SELECT oeuvre_id FROM oeuvre ORDER BY oeuvre_id DESC LIMIT 1 ");
+            if(res.next()) {
+                id = res.getInt("oeuvre_id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id + 1;
+    }
+
+    public void createView() {
+
+        String[] labels = new String[] {"Titre: ", "Artiste: ", "Genre: ", "Support: ", "Date d'achat: ", "Boutique: ", "Note: ", "Commentaire: "};
 
         //On récupere la taille de chaine <labels>
         int lenLabels = labels.length;
@@ -83,7 +97,7 @@ public class FormAjoutFilm extends JDialog {
         //Dans l'idéal faire une boucle
         panelForm.add(titre, c);
         c.gridy++;
-        panelForm.add(realisateur, c);
+        panelForm.add(artiste, c);
         c.gridy++;
         panelForm.add(genre, c);
         c.gridy++;
@@ -93,17 +107,12 @@ public class FormAjoutFilm extends JDialog {
         c.gridy++;
         panelForm.add(platformAchat, c);
         c.gridy++;
-        panelForm.add(status, c);
-        c.gridy++;
-        panelForm.add(version, c);
-        c.gridy++;
         panelForm.add(note, c);
         c.gridy++;
         //commentaire.setPreferredSize(new Dimension(150, 60));
         panelForm.add(commentaire, c);
 
         //Place le boutton dans le formulaire
-
         c.gridx = 1;
         c.gridy = lenLabels + 1;
         c.anchor = GridBagConstraints.LAST_LINE_END;
@@ -112,28 +121,27 @@ public class FormAjoutFilm extends JDialog {
         b.addActionListener(new BoutonListener());
     }
 
-    public class BoutonListener implements ActionListener {
+    class BoutonListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
 
-            String query = "INSERT INTO oeuvre ( oeuvre_titre, oeuvre_createur, oeuvre_genre, oeuvre_support, date_achat, " +
-                    "plateforme_achat, oeuvre_terminer, oeuvre_vf, oeuvre_note, oeuvre_commentaire, categorie_id, support_id ) "
-                    + "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO oeuvre (oeuvre_titre, oeuvre_createur, oeuvre_genre, oeuvre_support, " +
+                    "date_achat, plateforme_achat, oeuvre_note, oeuvre_commentaire, categorie_id, support_id ) "
+                    + "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             try {
 
                 PreparedStatement st = Connexion.getInstance().prepareStatement(query);
+
                 st.setString(1, titre.getText());
-                st.setString(2, realisateur.getText());
+                st.setString(2, artiste.getText());
                 st.setString(3, (String) genre.getSelectedItem());
                 st.setString(4, (String) support.getSelectedItem());
                 st.setString(5, dateAchat.getText());
                 st.setString(6, platformAchat.getText());
-                st.setString(7, (String) status.getSelectedItem());
-                st.setString(8, (String) version.getSelectedItem());
-                st.setString(9, note.getText());
-                st.setString(10, commentaire.getText());
-                st.setString(11, "4");
-                st.setString(12, "1");
+                st.setString(7, note.getText());
+                st.setString(8, commentaire.getText());
+                st.setString(9, "1");
+                st.setString(10, "1");
 
                 st.executeUpdate();
 

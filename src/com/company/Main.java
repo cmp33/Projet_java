@@ -5,7 +5,6 @@ import ui.FirstInterface;
 public class Main {
 
     public static void main(String[] args){
-    new FirstInterface();
-
+        new FirstInterface();
     }
 }

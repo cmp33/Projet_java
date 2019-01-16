@@ -1,11 +1,30 @@
 package ui.jeu;
+import ui.Table;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Jeu extends JPanel {
+
     private JPanel top;
     private  JPanel main;
+
+    private String strSql = "SELECT oeuvre_titre, oeuvre_genre, oeuvre_support, date_achat, plateforme_achat, oeuvre_terminer, oeuvre_note, oeuvre_commentaire "
+                            + "FROM oeuvre "
+                            + "WHERE categorie_id = '3' ";
+
+    private String[] columnGame = {
+
+            //"Select",
+            "Nom",
+            "Genre",
+            "Support",
+            "Date d'achat",
+            "Boutique",
+            "Status",
+            "Note",
+            "Commentaire"
+    };
 
     public Jeu(){
         top = new JPanel();
@@ -25,6 +44,7 @@ public class Jeu extends JPanel {
         ButTopLayout.setHgap(5);
 
         JPanel ButTop = new JPanel(ButTopLayout);
+        ButTop.setBackground(new Color(0x9FE4FF));
 
         JButton AjoutJeu = new JButton("Ajouter");
         JButton ModifJeu = new JButton("Modifier");
@@ -33,16 +53,16 @@ public class Jeu extends JPanel {
         AjoutJeu.addActionListener(e -> new FormAjoutJeu());
         ModifJeu.addActionListener(e -> new FormModifJeu());
 
-        JLabel NomCategorie = new JLabel("Vous êtes dans la catégorie: Jeu");
+        JLabel NomCategorie = new JLabel("    Catégorie: Jeu");
 
         ButTop.add(AjoutJeu);
-        ButTop.add(ModifJeu);
-        ButTop.add(SuppJeu);
+        //ButTop.add(ModifJeu);
+        //ButTop.add(SuppJeu);
         top.add(NomCategorie);
 
         top.add(ButTop, BorderLayout.LINE_END);
 
-        TabJeu tabJeu = new TabJeu();
-        main.add(tabJeu, BorderLayout.CENTER);
+        Table tab = new Table(strSql, columnGame);
+        main.add(tab, BorderLayout.CENTER);
     }
 }
